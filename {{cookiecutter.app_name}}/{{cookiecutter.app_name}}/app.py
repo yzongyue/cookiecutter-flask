@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 """The app module, containing the app factory function."""
 from flask import Flask, render_template
+from flask.ext.heroku import Heroku
 
 from {{cookiecutter.app_name}}.settings import ProdConfig
 from {{cookiecutter.app_name}}.assets import assets
@@ -24,6 +25,10 @@ def create_app(config_object=ProdConfig):
     """
     app = Flask(__name__)
     app.config.from_object(config_object)
+
+    if config_object == ProdConfig:
+        heroku = Heroku(app)
+
     register_extensions(app)
     register_blueprints(app)
     register_errorhandlers(app)
