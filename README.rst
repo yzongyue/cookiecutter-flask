@@ -1,5 +1,5 @@
-cookiecutter-flask
-==================
+cookiecutter-flask (plus some stuff)
+====================================
 
 A Flask template for cookiecutter_.
 
@@ -9,13 +9,20 @@ A Flask template for cookiecutter_.
     :target: https://travis-ci.org/sloria/cookiecutter-flask
     :alt: Build Status
 
+Modified from the version authored by Github user: sloria at https://github.com/sloria/cookiecutter-flask.git
+
+The primary goal is to have a different logical split of files (models, views and services instead of public, user, etc), which
+is purely personal preference.
+
+The medium term intention is to have a slightly expanded version, which includes a blog via Flask-Blogging, a contact form using
+Flask-Mail, then perhaps some other things later on.
 
 Use it now
 ----------
 ::
 
     $ pip install cookiecutter
-    $ cookiecutter https://github.com/sloria/cookiecutter-flask.git
+    $ cookiecutter https://github.com/wdm0006/cookiecutter-flask.git
 
 You will be asked about your basic info (name, project name, app name, etc.). This info will be used in your new project.
 
