@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
 """Public section, including homepage and signup."""
-from flask import (Blueprint, request, render_template, flash, url_for,
-                    redirect, session)
+from flask import (Blueprint, request, render_template, flash, url_for, send_from_directory, make_response,
+                   redirect, current_app)
+import datetime
+
 from flask_login import login_user, login_required, logout_user
 
 from {{cookiecutter.app_name}}.extensions import login_manager
@@ -27,7 +29,7 @@ def home():
         if form.validate_on_submit():
             login_user(form.user)
             flash("You are logged in.", 'success')
-            redirect_url = request.args.get("next") or url_for("user.members")
+            redirect_url = request.args.get("next") or url_for("user.profile")
             return redirect(redirect_url)
         else:
             flash_errors(form)
@@ -61,3 +63,27 @@ def register():
 def about():
     form = LoginForm(request.form)
     return render_template("public/about.html", form=form)
+
+@blueprint.route('/robots.txt')
+@blueprint.route('/favicon.ico')
+def static_from_root():
+    return send_from_directory(current_app.static_folder, request.path[1:])
+
+@blueprint.route('/sitemap.xml', methods=['GET'])
+def sitemap():
+    """
+    Generate sitemap.xml. Makes a list of urls and date modified.
+    """
+    pages = []
+    ten_days_ago = datetime.datetime.now() - datetime.timedelta(days=10)
+    ten_days_ago = ten_days_ago.date().isoformat()
+    # static pages
+    for rule in current_app.url_map.iter_rules():
+        if "GET" in rule.methods and len(rule.arguments) == 0:
+            pages.append([rule.rule, ten_days_ago])
+
+    sitemap_xml = render_template('public/sitemap_template.xml', pages=pages)
+    response = make_response(sitemap_xml)
+    response.headers["Content-Type"] = "application/xml"
+
+    return response

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from flask_wtf import Form
-from wtforms import TextField, PasswordField
+from wtforms import TextField, PasswordField, StringField
 from wtforms.validators import DataRequired, Email, EqualTo, Length
 
 from {{cookiecutter.app_name}}.models.user import User
@@ -33,3 +33,18 @@ class RegisterForm(Form):
             self.email.errors.append("Email already registered")
             return False
         return True
+
+class EmailForm(Form):
+    email = StringField('Email', validators=[DataRequired(), Email()])
+
+
+class PasswordForm(Form):
+    password = PasswordField('Password', validators=[DataRequired()])
+    password2 = PasswordField('Confirm Password',
+                              validators=[DataRequired(), EqualTo('password', message='Passwords must match')])
+
+
+class UsernameForm(Form):
+    username = StringField('Username', validators=[DataRequired()])
+    username2 = StringField('Confirm Username',
+                            validators=[DataRequired(), EqualTo('username', message='Usernames must match')])

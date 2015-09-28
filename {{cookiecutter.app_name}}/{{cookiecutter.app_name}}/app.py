@@ -9,6 +9,7 @@ from {{cookiecutter.app_name}}.extensions import (
     cache,
     db,
     login_manager,
+    mail,
     migrate,
     debug_toolbar,
 )
@@ -28,7 +29,6 @@ def create_app(config_object=ProdConfig):
     register_errorhandlers(app)
     return app
 
-
 def register_extensions(app):
     assets.init_app(app)
     bcrypt.init_app(app)
@@ -37,6 +37,7 @@ def register_extensions(app):
     login_manager.init_app(app)
     debug_toolbar.init_app(app)
     migrate.init_app(app, db)
+    mail.init_app(app)
     return None
 
 
