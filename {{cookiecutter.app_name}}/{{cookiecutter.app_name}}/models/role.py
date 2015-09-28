@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from {{cookiecutter.app_name}}.extensions
+from {{cookiecutter.app_name}}.extensions import db
 from {{cookiecutter.app_name}}.database import (
     Column,
     db,
