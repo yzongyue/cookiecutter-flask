@@ -41,6 +41,9 @@ Use it now
 
 You will be asked about your basic info (name, project name, app name, etc.). This info will be used in your new project.
 
+Full example for pushing app to Heroku `here <http://willmcginnis.com/2015/09/28/cookiecutter-flask-and-some-other-stuff/>`_
+
+
 Features
 --------
 
