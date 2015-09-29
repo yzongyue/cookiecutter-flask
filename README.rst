@@ -26,7 +26,11 @@ Secondary is a slight expansion in scope to include other common pages and funct
 - Basic admin
 - Contact forms
 - Blog page (possibly)
+- Google Analytics Integration
 - Etc.
+
+A live example can be found here: `CookieCutter Flask Demo <https://cookiecutterflask.herokuapp.com>`_
+
 
 Use it now
 ----------
