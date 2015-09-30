@@ -1,13 +1,9 @@
 cookiecutter-flask (plus some stuff)
 ====================================
 
-A Flask template for cookiecutter_.
+A(nother) Flask template for cookiecutter_.
 
 .. _cookiecutter: https://github.com/audreyr/cookiecutter
-
-.. image:: https://travis-ci.org/sloria/cookiecutter-flask.svg
-    :target: https://travis-ci.org/sloria/cookiecutter-flask
-    :alt: Build Status
 
 Modified from the version authored by Github user: sloria at https://github.com/sloria/cookiecutter-flask.git
 
@@ -43,11 +39,13 @@ You will be asked about your basic info (name, project name, app name, etc.). Th
 
 Full example for pushing app to Heroku `here <http://willmcginnis.com/2015/09/28/cookiecutter-flask-and-some-other-stuff/>`_
 
+![screenshot](https://github.com/wdm0006/cookiecutter-flask/blob/master/screenshots/cookiecutterflask.png "Template Screenshot")
 
 Features
 --------
 
 - Bootstrap 3 and Font Awesome 4 with starter templates
+- 3 Bootstrap themes included (standard, dark, and paper)
 - Flask-SQLAlchemy with basic User model
 - Easy database migrations with Flask-Migrate
 - Flask-WTForms with login and registration forms
@@ -55,11 +53,10 @@ Features
 - Username/Password reset and unsubscribe functionality baked in
 - Flask-Login for authentication
 - Flask-Bcrypt for password hashing
-- Procfile for deploying to a PaaS (e.g. Heroku)
+- Out-of-the-box ready for deploying to a PaaS (e.g. Heroku)
 - pytest and Factory-Boy for testing (example tests included)
 - A simple ``manage.py`` script.
 - CSS and JS minification using Flask-Assets
-- Optional bower support for frontend package management
 - Caching using Flask-Cache
 - Useful debug toolbar
 - sitemap.xml and robots.txt built in
