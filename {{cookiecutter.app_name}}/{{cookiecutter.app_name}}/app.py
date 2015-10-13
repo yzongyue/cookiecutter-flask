@@ -14,7 +14,7 @@ from {{cookiecutter.app_name}}.extensions import (
     migrate,
     debug_toolbar,
 )
-from {{cookiecutter.app_name}}.views import public, user
+from {{cookiecutter.app_name}}.views import public, user, blog
 
 
 def create_app(config_object=ProdConfig):
@@ -49,6 +49,7 @@ def register_extensions(app):
 def register_blueprints(app):
     app.register_blueprint(public.blueprint)
     app.register_blueprint(user.blueprint)
+    app.register_blueprint(blog.blueprint)
     return None
 
 
