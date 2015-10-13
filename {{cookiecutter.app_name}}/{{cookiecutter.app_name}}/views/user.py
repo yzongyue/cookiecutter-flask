@@ -3,7 +3,7 @@ from flask import (Blueprint, request, render_template, flash, url_for, send_fro
                    redirect, current_app)
 
 from flask_login import login_required, logout_user, current_user
-from {{cookiecutter.app_name}}.utils import flash_errors
+from {{cookiecutter.app_name}}.utils import flash_errors, render_extensions
 from {{cookiecutter.app_name}}.forms.user import PasswordForm, EmailForm, UsernameForm
 from {{cookiecutter.app_name}}.extensions import mail
 from {{cookiecutter.app_name}}.models.user import User
@@ -18,7 +18,7 @@ blueprint = Blueprint("user", __name__, url_prefix='/users',
 @blueprint.route("/")
 @login_required
 def profile():
-    return render_template("users/profile.html")
+    return render_extensions("users/profile.html")
 
 @blueprint.route('/reset', methods=["GET", "POST"])
 def reset():
@@ -42,7 +42,7 @@ def reset():
     else:
         flash_errors(form)
 
-    return render_template('users/reset.html', resetform=form)
+    return render_extensions('users/reset.html', resetform=form)
 
 @blueprint.route('/reset/<token>', methods=["GET", "POST"])
 def reset_with_token(token):
@@ -64,7 +64,7 @@ def reset_with_token(token):
     else:
         flash_errors(form)
 
-    return render_template('users/reset_with_token.html', resetform=form, token=token)
+    return render_extensions('users/reset_with_token.html', resetform=form, token=token)
 
 
 @blueprint.route('/change_password', methods=['GET', 'POST'])
@@ -78,7 +78,7 @@ def change_password():
     else:
         flash_errors(form)
 
-    return render_template('users/change_password.html', resetform=form)
+    return render_extensions('users/change_password.html', resetform=form)
 
 
 @blueprint.route('/change_username', methods=['GET', 'POST'])
@@ -92,12 +92,12 @@ def change_username():
     else:
         flash_errors(form)
 
-    return render_template('users/change_username.html', resetform=form)
+    return render_extensions('users/change_username.html', resetform=form)
 
 @blueprint.route('/unsubscribe')
 @login_required
 def unsubscribe():
-    return render_template('users/unsubscribe.html')
+    return render_extensions('users/unsubscribe.html')
 
 
 @blueprint.route('/unsubscribe_confirm')

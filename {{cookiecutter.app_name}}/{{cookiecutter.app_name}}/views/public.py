@@ -10,7 +10,7 @@ from {{cookiecutter.app_name}}.extensions import login_manager
 from {{cookiecutter.app_name}}.models.user import User
 from {{cookiecutter.app_name}}.forms.public import LoginForm
 from {{cookiecutter.app_name}}.forms.user import RegisterForm
-from {{cookiecutter.app_name}}.utils import flash_errors
+from {{cookiecutter.app_name}}.utils import flash_errors, render_extensions
 from {{cookiecutter.app_name}}.database import db
 
 blueprint = Blueprint('public', __name__, static_folder="../static")
@@ -33,7 +33,7 @@ def home():
             return redirect(redirect_url)
         else:
             flash_errors(form)
-    return render_template("public/home.html", form=form)
+    return render_extensions("public/home.html", form=form)
 
 
 @blueprint.route('/logout/')
@@ -56,13 +56,13 @@ def register():
         return redirect(url_for('public.home'))
     else:
         flash_errors(form)
-    return render_template('public/register.html', form=form)
+    return render_extensions('public/register.html', form=form)
 
 
 @blueprint.route("/about/")
 def about():
     form = LoginForm(request.form)
-    return render_template("public/about.html", form=form)
+    return render_extensions("public/about.html", form=form)
 
 @blueprint.route('/robots.txt')
 @blueprint.route('/favicon.ico')
