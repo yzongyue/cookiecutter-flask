@@ -13,20 +13,36 @@ Goals
 The primary goal is to have a different logical split of files (models, views and services instead of public, user, etc), which
 is purely personal preference.
 
-Secondary is a slight expansion in scope to include other common pages and functionality, including:
+Secondary is a slight expansion in scope to include other common pages and functionality, which is in progress. So far we
+have completed:
 
-- Forgotten password handling
-- Username change
-- Password change
-- Unsubscribe
-- Basic admin
-- Contact forms
-- Blog page (possibly)
-- Google Analytics Integration
-- Etc.
+ * Forgotten password handling
+ * Username change
+ * Password change
+ * Unsubscribe
+ * Google Analytics Integration
+ * Heroku Integration
+ 
+In progress are:
+
+ * Simple text and external image blog powered by markdown
+
+For the future are:
+
+ * Sample contact form and page
+ * Basic Admin UI
+ * Example T\&Cs
+ * Social Links/Integration
+ * Login outside of the header (maybe modal)
+ * Commenting on blog via discus or similar
+ * Etc.
 
 A live example can be found here: [CookieCutter Flask Demo](https://cookiecutterflask.herokuapp.com)
 
+Contributing
+------------
+
+If you are interested in contributing please let me know, any of the future goals listed above would be great to help with.
 
 Use it now
 ----------
