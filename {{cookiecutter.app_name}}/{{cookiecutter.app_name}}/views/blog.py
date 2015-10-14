@@ -1,16 +1,12 @@
 # -*- coding: utf-8 -*-
 """Public section, including homepage and signup."""
-from flask import (Blueprint, request, flash, url_for, send_from_directory, make_response,
-                   redirect, current_app)
-import datetime
+from flask import Blueprint, Markup
+import markdown
 
-from flask_login import login_user, login_required, logout_user
-
-from myflaskapp.extensions import login_manager
-from myflaskapp.models.user import User
-from myflaskapp.forms.public import LoginForm
-from myflaskapp.utils import flash_errors, render_extensions
-from myflaskapp.database import db
+from {{cookiecutter.app_name}}.services.blog import get_page, get_post_detail
+from {{cookiecutter.app_name}}.extensions import login_manager
+from {{cookiecutter.app_name}}.models.user import User
+from {{cookiecutter.app_name}}.utils import flash_errors, render_extensions
 
 blueprint = Blueprint('blog', __name__, static_folder="../static")
 
@@ -27,31 +23,21 @@ def blog_page(page=None):
     :param page:
     :return:
     """
+
     page = int(page)
-    _num_posts = 3
-    if page is None:
-        start = 0
-        end = start + _num_posts
+    _page_size = 3  # TODO: move into settings
+
+    if page is None or page <= 0:
         next_page = 0
         prev_page = 1
         current = True
     else:
-        start = _num_posts * page
-        end = start + _num_posts
-        if page > 0:
-            next_page = page - 1
-            prev_page = page + 1
-            current = False
-        else:
-            next_page = 0
-            prev_page = 1
-            current = True
+        next_page = page - 1
+        prev_page = page + 1
+        current = False
 
-    posts = [
-        {'id': 1, 'title': 'Blog Post 1', 'author': 'Will M.', 'date': '2015-10-01 12:00', 'slug': 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore, veritatis, tempora, necessitatibus inventore nisi quam quia repellat ut tempore laborum possimus eum dicta id animi corrupti debitis ipsum officiis rerum.'},
-        {'id': 2, 'title': 'Blog Post 2', 'author': 'Will M.', 'date': '2015-10-01 12:00', 'slug': 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore, veritatis, tempora, necessitatibus inventore nisi quam quia repellat ut tempore laborum possimus eum dicta id animi corrupti debitis ipsum officiis rerum.'},
-        {'id': 3, 'title': 'Blog Post 3', 'author': 'Will M.', 'date': '2015-10-01 12:00', 'slug': 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore, veritatis, tempora, necessitatibus inventore nisi quam quia repellat ut tempore laborum possimus eum dicta id animi corrupti debitis ipsum officiis rerum.'}
-    ]
+    posts = get_page(_page_size, page)
+
     return render_extensions("blog/blog_page.html", posts=posts, next_page=next_page, prev_page=prev_page, current=current)
 
 
@@ -63,12 +49,5 @@ def blog_detail(pk):
     :return:
     """
 
-    post = {
-        'id': 1,
-        'title': 'Blog Post 1',
-        'author': 'Will M.',
-        'date': '2015-10-01 12:00',
-        'body': 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore, veritatis, tempora, necessitatibus inventore nisi quam quia repellat ut tempore laborum possimus eum dicta id animi corrupti debitis ipsum officiis rerum.'
-    }
-
+    post = get_post_detail(int(pk))
     return render_extensions("blog/blog_detail.html", post=post)
