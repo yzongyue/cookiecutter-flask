@@ -1,22 +1,14 @@
 # -*- coding: utf-8 -*-
 """Public section, including homepage and signup."""
-from flask import Blueprint, Markup
-import markdown
+from flask import Blueprint
 
 from {{cookiecutter.app_name}}.services.blog import get_page, get_post_detail
-from {{cookiecutter.app_name}}.extensions import login_manager
-from {{cookiecutter.app_name}}.models.user import User
 from {{cookiecutter.app_name}}.utils import flash_errors, render_extensions
 
 blueprint = Blueprint('blog', __name__, static_folder="../static")
 
 
-@login_manager.user_loader
-def load_user(id):
-    return User.get_by_id(int(id))
-
-
-@blueprint.route("/blog/<page>/", methods=["GET", "POST"])
+@blueprint.route("/blog/<page>/", methods=["GET"])
 def blog_page(page=None):
     """
 
@@ -41,7 +33,7 @@ def blog_page(page=None):
     return render_extensions("blog/blog_page.html", posts=posts, next_page=next_page, prev_page=prev_page, current=current)
 
 
-@blueprint.route("/post_detail/<pk>/", methods=["GET", "POST"])
+@blueprint.route("/post_detail/<pk>/", methods=["GET"])
 def blog_detail(pk):
     """
 
