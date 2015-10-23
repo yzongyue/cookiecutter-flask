@@ -18,8 +18,6 @@
                     </p>
                     <p>Posted: {{ post.date }}</p>
                     <hr>
-                    <img class="img-responsive" src="http://placehold.it/900x300" alt="">
-                    <hr>
                     <p>{{ post.slug }}</p>
                     <a class="btn btn-primary" href="{{ url_for('blog.blog_detail', pk=post.id) }}">Read More</a>
                     <hr>
