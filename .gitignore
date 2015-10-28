@@ -2,6 +2,8 @@
 
 # C extensions
 *.so
+.idea/
+.idea
 
 # Packages
 *.egg
@@ -43,5 +45,4 @@ docs/_build
 # Cookiecutter
 output/
 
-myflaskapp/
 bower_components
