@@ -1,5 +1,5 @@
 import datetime as dt
-from flask.ext.login import UserMixin
+from flask_login import UserMixin
 from {{cookiecutter.app_name}}.extensions import db, bcrypt
 from {{cookiecutter.app_name}}.database import (
     Column,
