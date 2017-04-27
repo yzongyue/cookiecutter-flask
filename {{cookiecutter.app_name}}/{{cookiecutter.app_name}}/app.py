@@ -1,7 +1,10 @@
 # -*- coding: utf-8 -*-
 """The app module, containing the app factory function."""
-from flask import Flask, render_template
+import importlib
 import os
+
+from flask import Flask, render_template, Blueprint
+from werkzeug.utils import find_modules
 
 from {{cookiecutter.app_name}}.settings import ProdConfig
 from {{cookiecutter.app_name}}.assets import assets
@@ -14,7 +17,6 @@ from {{cookiecutter.app_name}}.extensions import (
     migrate,
     debug_toolbar,
 )
-from {{cookiecutter.app_name}}.views import public, user, blog
 
 
 def create_app(config_object=ProdConfig):
@@ -30,7 +32,7 @@ def create_app(config_object=ProdConfig):
         app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
 
     register_extensions(app)
-    register_blueprints(app)
+    register_blueprints(app, __name__)
     register_errorhandlers(app)
     return app
 
@@ -46,10 +48,12 @@ def register_extensions(app):
     return None
 
 
-def register_blueprints(app):
-    app.register_blueprint(public.blueprint)
-    app.register_blueprint(user.blueprint)
-    app.register_blueprint(blog.blueprint)
+def register_blueprints(app, import_path, bp_name='blueprint'):
+    for name in find_modules(import_path, include_packages=True):
+        mod = importlib.import_module(name)
+        bp = getattr(mod, bp_name, None)
+        if isinstance(bp, Blueprint):
+            app.register_blueprint(bp)
     return None
 
 

@@ -9,6 +9,7 @@ class Config(object):
     APP_DIR = os.path.abspath(os.path.dirname(__file__))  # This directory
     PROJECT_ROOT = os.path.abspath(os.path.join(APP_DIR, os.pardir))
     BCRYPT_LOG_ROUNDS = 13
+    PROD_ENV = False
     ASSETS_DEBUG = False
     DEBUG_TB_ENABLED = False  # Disable Debug toolbar
     DEBUG_TB_INTERCEPT_REDIRECTS = False
@@ -24,7 +25,7 @@ class Config(object):
 
 class ProdConfig(Config):
     """Production configuration."""
-    ENV = 'prod'
+    PROD_ENV = True
     DEBUG = False
     SQLALCHEMY_DATABASE_URI = 'postgresql://localhost/example'  # TODO: Change me
     DEBUG_TB_ENABLED = False  # Disable Debug toolbar
@@ -32,7 +33,6 @@ class ProdConfig(Config):
 
 class DevConfig(Config):
     """Development configuration."""
-    ENV = 'dev'
     DEBUG = True
     DB_NAME = 'dev.db'
     # Put the db file in project root
