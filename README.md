@@ -1,60 +1,19 @@
-cookiecutter-flask (plus some stuff)
-====================================
+# Flask Project Template
 
-A(nother) Flask template for cookiecutter.
+Fork from [cookiecutter](https://github.com/wdm0006/cookiecutter-flask)
 
-[cookiecutter](https://github.com/audreyr/cookiecutter)
-
-Modified from the version authored by Github user: [sloria](https://github.com/sloria/cookiecutter-flask.git)
-
-Goals
------
-
-The primary goal is to have a different logical split of files (models, views and services instead of public, user, etc), which
-is purely personal preference.
-
-Secondary is a slight expansion in scope to include other common pages and functionality, which is in progress. So far we
-have completed:
-
- * Forgotten password handling
- * Username change
- * Password change
- * Unsubscribe
- * Google Analytics Integration
- * Heroku Integration
- 
-In progress are:
-
- * Simple text and external image blog powered by markdown
-
-For the future are:
-
- * Sample contact form and page
- * Basic Admin UI
- * Example T\&Cs
- * Social Links/Integration
- * Login outside of the header (maybe modal)
- * Commenting on blog via discus or similar
- * Etc.
-
-A live example can be found here: [CookieCutter Flask Demo](https://cookiecutterflask.herokuapp.com)
-
-Contributing
-------------
-
-If you are interested in contributing please let me know, any of the future goals listed above would be great to help with.
+依个人口味对原项目做了部分修改
 
 Use it now
 ----------
 
     $ pip install cookiecutter
-    $ cookiecutter https://github.com/wdm0006/cookiecutter-flask.git
+    $ cookiecutter https://github.com/yzongyue/cookiecutter-flask.git
+    $ cd yourproject && pip install requirements.txt
+    or
+    $ docker-compose up
 
 You will be asked about your basic info (name, project name, app name, etc.). This info will be used in your new project.
-
-Full example for pushing app to Heroku `here <http://willmcginnis.com/2015/09/28/cookiecutter-flask-and-some-other-stuff/>`_
-
-![screenshot](https://github.com/wdm0006/cookiecutter-flask/blob/master/screenshots/cookiecutterflask.png "Template Screenshot")
 
 Features
 --------
@@ -82,6 +41,7 @@ Inspiration
 -----------
 
 - [Sloria](https://github.com/sloria/cookiecutter-flask.git)
+- [wdm0006](https://github.com/wdm0006/cookiecutter-flask.git)
 
 License
 -------

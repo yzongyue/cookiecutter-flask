@@ -7,13 +7,9 @@ from flask_migrate import MigrateCommand
 
 from {{cookiecutter.app_name}}.app import create_app
 from {{cookiecutter.app_name}}.models.user import User
-from {{cookiecutter.app_name}}.settings import DevConfig, ProdConfig
 from {{cookiecutter.app_name}}.database import db
 
-if os.environ.get("{{cookiecutter.app_name | upper}}_ENV") == 'prod':
-    app = create_app(ProdConfig)
-else:
-    app = create_app(DevConfig)
+app = create_app(config_object=None)
 
 HERE = os.path.abspath(os.path.dirname(__file__))
 TEST_PATH = os.path.join(HERE, 'tests')
